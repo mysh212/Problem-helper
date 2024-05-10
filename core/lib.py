@@ -20,6 +20,16 @@ pwd = os.getcwd
 cd('..')
 root = pwd()
 
+def road(i,j):
+    if type(i) == 'list':
+        ans = root
+        for j in i:
+           ans = ans + '/' + j
+        return ans
+    ans = root
+    if i: ans = ans + '/' + i
+    if j: ans = ans + '/' + j
+    return ans
 
 def getfilename(x: str):
     return x.split('/')[::-1][0]
