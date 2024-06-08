@@ -1,71 +1,56 @@
-import os, shutil
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+import os
+import requests
+import json
+# from bs4 import BeautifulSoup as bs
 
+DATA_PATH = os.getcwd().replace('\\', '/')+"/data/"
+MOUDLE_PATH = os.getcwd().replace('\\', '/')+"/dataMoudle/"
 
-ls = os.listdir
-cd = os.chdir
-md = os.mkdir
-cp = shutil.copyfile
-exist = os.path.exists
-pwd = os.getcwd
-cd('..')
-root = pwd()
+def get_page_html(url: str):
+    header = {'cookie': 'over18=1'}
+    response = requests.get(url, headers=header)
+    return response.text
 
-def road(i,j):
-    if type(i) == 'list':
-        ans = root
-        for j in i:
-           ans = ans + '/' + j
-        return ans
-    ans = root
-    if i: ans = ans + '/' + i
-    if j: ans = ans + '/' + j
+# def parse_page_html(html,tag):
+#     soup = bs(html, 'html.parser')
+#     problems = soup.select(tag)
+#     return problems
+
+def write_to_file(x: str,name: str):
+    f = open(name,'w',encoding = 'UTF-8')
+    f.write(x)
+    f.close()
+    return
+
+def read_from_file(name: str) -> str:
+    with open(name,'r') as f:
+        ans = ''
+        for i in f:
+            ans = ans + i
+        f.close()
     return ans
 
-def getfilename(x: str):
-    return x.split('/')[::-1][0]
+def getdata(dataname,dataType):
+    with open(DATA_PATH+str(dataType)+"/"+str(dataname)+".json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+    file.close()
+    return data
+    
 
-def mkdir(x: str):
-    try:
-        md(x)
-    except:
-        warning(f'While making dir {x}')
-        return False
-    return True
+def writedata(data, path, dataType): 
+    file = open(DATA_PATH+str(dataType)+"/"+str(path)+".json", "w")
+    json.dump(data, file, sort_keys = True, indent = 4, ensure_ascii = False)
+    file.close()
 
-def zt(x,n):
-    x = str(x)
-    while len(x) < n: x = '0' + x;
-    return x
-
-def warning(x: str,pre = None):
-    p = ''
-    if pre:
-        p = '[' + '] ['.join(pre) + '] '
-    print(f'{bcolors.BOLD}{bcolors.WARNING}WARN{bcolors.ENDC}  {x}')
-    return
-
-def error(x: str):
-    print(f'{bcolors.BOLD}{bcolors.FAIL}ERROR{bcolors.ENDC} {x}')
-    return
-
-def info(x: str,pre = None):
-    p = ''
-    if pre:
-        p = '[' + '] ['.join(pre) + '] '
-    print(f'{bcolors.BOLD}{bcolors.OKCYAN}INFO{bcolors.ENDC}  {p}{x}')
-    return
-
-def debug(x: str):
-    print(f'{bcolors.BOLD}{bcolors.OKGREEN}DEBUG{bcolors.ENDC} {x}')
-    return
-
+def stable_hash(x: str) -> int:
+    now = x + '%&*(&%$)'
+    R = (1 << ((1 << 7) - 1)) - 1
+    T = 10 ** 9 + 7
+    tt = 1
+    t = 0
+    ans = 0
+    for i in now:
+        tt = (tt * T) % R
+        ans = (ans + ord(i) * tt) % R
+    return ans
+    

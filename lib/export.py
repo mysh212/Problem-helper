@@ -2,7 +2,7 @@
 # 2024/05/09 Thu 10:31:40
 import os, shutil
 import xml.etree.ElementTree as ET
-from core.lib import *
+from core.general import *
 
 problems = []
 
