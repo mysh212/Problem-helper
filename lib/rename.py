@@ -7,12 +7,12 @@ def auto_rename():
     info(f'Found {len(problems)} problems:')
     mmax = max([len(i) for i in problems])
     for i in problems:
-        info(f'    {i.ljust(mmax)} -> {i[0].upper() + i[1:].lower()}')
+        info(f'    {i.ljust(mmax)} -> {i.title()}')
     tmp = input('Rename? [y/N]')
     if tmp.lower() != 'y': return;
     for i in problems:
-        info(f'Renaming {i} into {i[0].upper() + i[1:].lower()}')
-        os.rename(i,i[0].upper() + i[1:].lower())
+        info(f'Renaming {i} into {i.title()}')
+        os.rename(i,i.title())
     info('Finished.',['RENAME'])
     return
 

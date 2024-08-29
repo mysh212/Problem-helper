@@ -69,3 +69,15 @@ def debug(x: str):
     print(f'{bcolors.BOLD}{bcolors.OKGREEN}DEBUG{bcolors.ENDC} {x}')
     return
 
+def read_from_file(name: str) -> str:
+	return open(name,'r', encoding = 'UTF-8').read()
+
+def write_to_file(name: str,x):
+	with open(name,'w') as f:
+		f.write(str(x))
+	return
+
+def append_to_file(name: str,x):
+	with open(name,'a') as f:
+		f.write(str(x))
+	return

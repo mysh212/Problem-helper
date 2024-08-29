@@ -5,11 +5,12 @@ from core.general import *
 def main():
     page_url = 'https://mysh212.github.io'
     github_url = 'https://github.com'
-    contest_name = 'CHSH-nhspc113-PRE'
+    contest_name = 'CHSH-nhspc113-PRI'
     username = 'mysh212'
     footer = '***HARC X CHSH***'
+    contest_title = '''彰化高中113學年度 資訊學科能力競賽 校內複賽'''
 
-    template = f'''# **彰化高中112學年度學科能力競賽 校內複賽**
+    template = f'''# **{contest_title}**
 
  - [排名 ***<font color='#AAAAAA'>Rank</font>***]({page_url}/{contest_name}/Ranking/)
  - [官解 ***<font color='#AAAAAA'>Solution</font>***]({github_url}/{username}/{contest_name}/tree/master/Solution)
@@ -25,5 +26,9 @@ def main():
    - [如何補題]({page_url}/{contest_name}/Docs/)
    
 {footer}'''
-    
-    
+    cd(root)
+
+    info('Finished.',['Make README'])
+    write_to_file('README.md',template)
+
+    return
