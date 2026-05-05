@@ -14,7 +14,7 @@ def main():
 
  - [排名 ***<font color='#AAAAAA'>Rank</font>***]({page_url}/{contest_name}/Ranking/)
  - [官解 ***<font color='#AAAAAA'>Solutions</font>***]({github_url}/{username}/{contest_name}/tree/main/Solutions)
- - [審題者 ***<font color='#AAAAAA'>Tester</font>***]({page_url}/{contest_name}/Tester)
+ - [審題者 ***<font color='#AAAAAA'>Testers</font>***]({page_url}/{contest_name}/Testers)
  - [測資產生器 ***<font color='#AAAAAA'>Generator</font>***]({github_url}/{username}/{contest_name}/tree/main/Generator)
  - [測資驗證器 ***<font color='#AAAAAA'>Validator</font>***]({github_url}/{username}/{contest_name}/tree/main/Validator)
  - [測資生成指令 ***<font color='#AAAAAA'>Scripts</font>***]({github_url}/{username}/{contest_name}/tree/main/Scripts)
